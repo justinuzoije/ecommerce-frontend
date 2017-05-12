@@ -16,8 +16,13 @@ import helloReducer from './hello/Hello.reducer';
 import HelloContainer from './hello/Hello';
 import homeReducer from './home/Home.reducer';
 import HomeContainer from './home/Home';
-import ProductReducer from './product/Product.reducer';
+import productReducer from './product/Product.reducer';
 import ProductContainer from './product/Product';
+import signupReducer from './signup/Signup.reducer';
+import SignupContainer from './signup/Signup';
+import loginReducer from './login/Login.reducer';
+import LoginContainer from './login/Login';
+
 
 const reducer = Redux.combineReducers({
   // the hello property here corresponds to the
@@ -26,7 +31,9 @@ const reducer = Redux.combineReducers({
   // Use this pattern for each component
   hello: helloReducer,
   home: homeReducer,
-  product: ProductReducer
+  product: productReducer,
+  signup: signupReducer,
+  login: loginReducer
 });
 
 const store = Redux.createStore(
@@ -41,7 +48,10 @@ class AppLayout extends React.Component {
       <div>
         <ul className="nav">
           <li><IndexLink to="/" activeClassName="active">Home</IndexLink></li>
+          <li><IndexLink to="/login" activeClassName="active">Login</IndexLink></li>
+          <li><IndexLink to="/signup" activeClassName="active">Sign Up</IndexLink></li>
         </ul>
+          <p className="rightside">Hello {this.props.username}!</p>
         {this.props.children}
       </div>
     )
@@ -55,6 +65,8 @@ ReactDOM.render(
         <IndexRoute component={HomeContainer}/>
         <Route path="/hello" component={HelloContainer}/>
         <Route path="/product/:id" component={ProductContainer}/>
+        <Route path="/signup" component={SignupContainer}/>
+        <Route path="/login" component={LoginContainer}/>
       </Route>
     </Router>
   </ReactRedux.Provider>,
