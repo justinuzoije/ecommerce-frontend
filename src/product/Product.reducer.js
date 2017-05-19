@@ -4,13 +4,19 @@ const INITIAL_STATE = {
 
 export default function reducer(state = INITIAL_STATE, action) {
   if (action.type === 'fetch-product') {
-    console.log(action.value)
+    return Object.assign({}, state, {
+      content: action.value
+    });
+  } else if (action.type === 'add-tocart') {
     return Object.assign({}, state, {
       content: action.value
     });
   }
   return state;
 }
+
+
+
 
 
 

@@ -16,8 +16,9 @@ export default function reducer(state = INITIAL_STATE, action) {
     });
   } else if (action.type === 'submit-form') {
     return Object.assign({}, state, {
-      username: action.username,
-      password: action.password
+      username: action.value.username,
+      password: action.value.password,
+      auth_token: action.value.auth_token
     });
   } else if (action.type === 'login-error') {
     return Object.assign({}, state, {
